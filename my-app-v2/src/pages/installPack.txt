@@ -1,0 +1,9 @@
+For LMS => => => 
+1. npm install @react-navigation/native @react-navigation/drawer react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+2. npm install react-native-image-picker
+3. npm install react-native-collapsible
+4. npm install react-native-paper
+5. expo install expo-linear-gradient
+6. npm install react-native-paper react-native-modal-datetime-picker moment/
+7. expo install @react-native-community/datetimepicker
+8. 

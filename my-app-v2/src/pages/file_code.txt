@@ -1,0 +1,538 @@
+// india map experiment 8th class 
+
+// // // // // // import React, { useState } from "react";
+// // // // // // import {
+// // // // // //   StyleSheet,
+// // // // // //   View,
+// // // // // //   Image,
+// // // // // //   Dimensions,
+// // // // // //   SafeAreaView,
+// // // // // //   ScrollView,
+// // // // // //   Alert,
+// // // // // // } from "react-native";
+// // // // // // import { Text, Button } from "react-native-paper"; // Using react-native-paper for button styling
+// // // // // // import {
+// // // // // //   PanGestureHandler,
+// // // // // //   GestureHandlerRootView,
+// // // // // // } from "react-native-gesture-handler";
+// // // // // // import Animated, {
+// // // // // //   useAnimatedGestureHandler,
+// // // // // //   withSpring,
+// // // // // //   useSharedValue,
+// // // // // // } from "react-native-reanimated";
+
+// // // // // // // Helper constants
+// // // // // // const { width, height } = Dimensions.get("window");
+
+// // // // // // // India Map App
+// // // // // // const IndiaMapApp = () => {
+// // // // // //   // Shared values for the 5 pins' positions
+// // // // // //   const pinPositions = [
+// // // // // //     { translateX: useSharedValue(10), translateY: useSharedValue(0) },
+// // // // // //     { translateX: useSharedValue(40), translateY: useSharedValue(0) },
+// // // // // //     { translateX: useSharedValue(70), translateY: useSharedValue(0) },
+// // // // // //     { translateX: useSharedValue(100), translateY: useSharedValue(0) },
+// // // // // //     { translateX: useSharedValue(130), translateY: useSharedValue(0) },
+// // // // // //   ];
+
+// // // // // //   // State to track if dragging is enabled or not
+// // // // // //   const [canDrag, setCanDrag] = useState(false); // Initially set to false (dragging disabled)
+// // // // // //   const [buttonText, setButtonText] = useState("Start Dragging"); // Button text state
+// // // // // //   const [scrollEnabled, setScrollEnabled] = useState(true); // State to control ScrollView
+
+// // // // // //   // Activity questions
+// // // // // //   const questions = [
+// // // // // //     "1) Which state in India has the highest number of petroleum reserves? (Place the red pin on the correct state)",
+// // // // // //     "2) Which state is the largest producer of coal in India? (Place the red pin on the correct state)",
+// // // // // //     "3) Which state is the largest producer of rice in India? (Place the red pin on the correct state)",
+// // // // // //     "4) Which state in India has the highest literacy rate? (Place the red pin on the correct state)",
+// // // // // //     "5) Which state in India is the largest producer of spices? (Place the red pin on the correct state)",
+// // // // // //   ];
+
+// // // // // //   // Function to handle the drag gesture for each pin
+// // // // // //   const gestureHandler = (pinIndex) =>
+// // // // // //     useAnimatedGestureHandler({
+// // // // // //       onStart: (_, ctx) => {
+// // // // // //         if (!canDrag) return; // Prevent drag if canDrag is false
+
+// // // // // //         // Only allow dragging if canDrag is true
+// // // // // //         ctx.startX = pinPositions[pinIndex].translateX.value;
+// // // // // //         ctx.startY = pinPositions[pinIndex].translateY.value;
+// // // // // //       },
+// // // // // //       onActive: (event, ctx) => {
+// // // // // //         if (!canDrag) return; // Prevent drag if canDrag is false
+
+// // // // // //         // Update the pin's position during the drag (only if canDrag is true)
+// // // // // //         pinPositions[pinIndex].translateX.value =
+// // // // // //           ctx.startX + event.translationX;
+// // // // // //         pinPositions[pinIndex].translateY.value =
+// // // // // //           ctx.startY + event.translationY;
+// // // // // //       },
+// // // // // //       onEnd: () => {
+// // // // // //         if (!canDrag) return; // Prevent drag if canDrag is false
+
+// // // // // //         // Apply spring animation when the drag ends (to smooth out the movement)
+// // // // // //         pinPositions[pinIndex].translateX.value = withSpring(
+// // // // // //           pinPositions[pinIndex].translateX.value
+// // // // // //         );
+// // // // // //         pinPositions[pinIndex].translateY.value = withSpring(
+// // // // // //           pinPositions[pinIndex].translateY.value
+// // // // // //         );
+// // // // // //       },
+// // // // // //     });
+
+// // // // // //   // Toggle the dragging state and button text, and control scroll
+// // // // // //   const toggleDrag = () => {
+// // // // // //     setCanDrag((prevState) => {
+// // // // // //       const newState = !prevState;
+// // // // // //       setButtonText(newState ? "Stop Dragging" : "Start Dragging"); // Change button text based on state
+// // // // // //       setScrollEnabled(!newState); // Disable/Enable scroll when starting/stopping drag
+// // // // // //       return newState;
+// // // // // //     });
+// // // // // //   };
+
+// // // // // //   const handleSubmit = () => {
+// // // // // //     Alert.alert("Submitted!", "Submitted Successfully!");
+// // // // // //   };
+
+// // // // // //   return (
+// // // // // //     <SafeAreaView style={styles.container}>
+// // // // // //       <ScrollView style={styles.scrollView} scrollEnabled={scrollEnabled}>
+// // // // // //         <GestureHandlerRootView style={styles.gestureHandlerRoot}>
+// // // // // //           {/* Questions */}
+// // // // // //           <View style={styles.questionsContainer}>
+// // // // // //             <Text variant="headlineMedium" style={{ color: "maroon" }}>
+// // // // // //               Activity
+// // // // // //             </Text>
+// // // // // //             {questions.map((question, index) => (
+// // // // // //               <Text
+// // // // // //                 key={index}
+// // // // // //                 variant="titleMedium"
+// // // // // //                 style={styles.questionText}
+// // // // // //               >
+// // // // // //                 {question}
+// // // // // //               </Text>
+// // // // // //             ))}
+// // // // // //           </View>
+
+// // // // // //           {/* India Map */}
+// // // // // //           <View style={styles.mapContainer}>
+// // // // // //             <Image
+// // // // // //               source={{
+// // // // // //                 uri: "https://jadavpuruniversity.s3-ap-south-1.amazonaws.com/11-2024-9-723-indiaMap.gif", // India map image URL
+// // // // // //               }}
+// // // // // //               style={styles.map}
+// // // // // //             />
+// // // // // //           </View>
+
+// // // // // //           {/* Draggable Pins */}
+// // // // // //           {pinPositions.map((pinPosition, idx) => (
+// // // // // //             <PanGestureHandler
+// // // // // //               key={idx}
+// // // // // //               onGestureEvent={gestureHandler(idx)}
+// // // // // //               onHandlerStateChange={gestureHandler(idx)}
+// // // // // //             >
+// // // // // //               <Animated.View
+// // // // // //                 style={[
+// // // // // //                   styles.pin,
+// // // // // //                   {
+// // // // // //                     transform: [
+// // // // // //                       { translateX: pinPosition.translateX },
+// // // // // //                       { translateY: pinPosition.translateY },
+// // // // // //                     ],
+// // // // // //                   },
+// // // // // //                 ]}
+// // // // // //               >
+// // // // // //                 <Image
+// // // // // //                   source={{
+// // // // // //                     uri: "https://jadavpuruniversity.s3-ap-south-1.amazonaws.com/11-2024-9-1326-pin.png", // Pin image URL
+// // // // // //                   }}
+// // // // // //                   style={styles.pinImage}
+// // // // // //                 />
+// // // // // //               </Animated.View>
+// // // // // //             </PanGestureHandler>
+// // // // // //           ))}
+
+// // // // // //           {/* Toggle Start/Stop Dragging Button */}
+// // // // // //           <Button
+// // // // // //             style={styles.toggleDragButton}
+// // // // // //             mode="contained"
+// // // // // //             labelStyle={{
+// // // // // //               color: "black",
+// // // // // //             }}
+// // // // // //             onPress={toggleDrag}
+// // // // // //           >
+// // // // // //             {buttonText}
+// // // // // //           </Button>
+
+// // // // // //           {/* Reset Pin Button */}
+// // // // // //           <Button
+// // // // // //             style={styles.resetButton}
+// // // // // //             mode="contained"
+// // // // // //             labelStyle={{
+// // // // // //               color: "black",
+// // // // // //             }}
+// // // // // //             onPress={() => {
+// // // // // //               // Reset all pin positions
+// // // // // //               pinPositions.forEach((pin, idx) => {
+// // // // // //                 pin.translateX.value = 30 + idx * 30;
+// // // // // //                 pin.translateY.value = 0;
+// // // // // //               });
+// // // // // //               setCanDrag(false);
+// // // // // //               setButtonText("Start Dragging");
+// // // // // //               setScrollEnabled(true); // Enable scrolling when resetting
+// // // // // //             }}
+// // // // // //           >
+// // // // // //             Reset Pins
+// // // // // //           </Button>
+
+// // // // // //           {/* Toggle Start/Stop Dragging Button */}
+// // // // // //           <Button
+// // // // // //             style={styles.toggleDragButtonSubmit}
+// // // // // //             mode="contained"
+// // // // // //             labelStyle={{
+// // // // // //               color: "black",
+// // // // // //             }}
+// // // // // //             onPress={handleSubmit}
+// // // // // //           >
+// // // // // //             Submit
+// // // // // //           </Button>
+// // // // // //         </GestureHandlerRootView>
+// // // // // //       </ScrollView>
+// // // // // //     </SafeAreaView>
+// // // // // //   );
+// // // // // // };
+
+// // // // // // const styles = StyleSheet.create({
+// // // // // //   container: {
+// // // // // //     flex: 1,
+// // // // // //     backgroundColor: "#f4f4f4",
+// // // // // //   },
+// // // // // //   gestureHandlerRoot: {
+// // // // // //     flex: 1,
+// // // // // //     justifyContent: "center",
+// // // // // //     alignItems: "center",
+// // // // // //   },
+// // // // // //   questionsContainer: {
+// // // // // //     margin: 20,
+// // // // // //     padding: 10,
+// // // // // //   },
+// // // // // //   questionText: {
+// // // // // //     marginVertical: 10,
+// // // // // //     fontSize: 16,
+// // // // // //     color: "#333",
+// // // // // //   },
+// // // // // //   mapContainer: {
+// // // // // //     width: "100%",
+// // // // // //     height: height * 0.6,
+// // // // // //     justifyContent: "center",
+// // // // // //     alignItems: "center",
+// // // // // //     position: "relative",
+// // // // // //   },
+// // // // // //   map: {
+// // // // // //     width: "100%",
+// // // // // //     height: "100%",
+// // // // // //     resizeMode: "contain",
+// // // // // //   },
+// // // // // //   pin: {
+// // // // // //     position: "absolute",
+// // // // // //     zIndex: 20,
+// // // // // //   },
+// // // // // //   pinImage: {
+// // // // // //     width: 50,
+// // // // // //     height: 50,
+// // // // // //     resizeMode: "contain",
+// // // // // //   },
+// // // // // //   instructions: {
+// // // // // //     marginTop: 20,
+// // // // // //     fontSize: 16,
+// // // // // //     color: "#333",
+// // // // // //     textAlign: "center",
+// // // // // //   },
+// // // // // //   toggleDragButton: {
+// // // // // //     borderColor: "black",
+// // // // // //     borderWidth: 2,
+// // // // // //     borderRadius: 30,
+// // // // // //     width: "60%",
+// // // // // //     backgroundColor: "#fcfefa",
+// // // // // //     marginVertical: 10,
+// // // // // //   },
+// // // // // //   toggleDragButtonSubmit: {
+// // // // // //     borderColor: "black",
+// // // // // //     borderWidth: 1,
+// // // // // //     borderRadius: 10,
+// // // // // //     width: "40%",
+// // // // // //     backgroundColor: "skyblue",
+// // // // // //     marginVertical: 10,
+// // // // // //   },
+// // // // // //   resetButton: {
+// // // // // //     borderColor: "black",
+// // // // // //     borderWidth: 2,
+// // // // // //     borderRadius: 30,
+// // // // // //     marginVertical: 10,
+// // // // // //     width: "60%",
+// // // // // //     backgroundColor: "#fcfefa",
+// // // // // //   },
+// // // // // // });
+
+// // // // // // export default IndiaMapApp;
+
+
+
+// ********************************************************************************
+import React, { useState } from "react";
+import { View, StyleSheet, Alert, Image, LogBox } from "react-native";
+import Draggable from "react-native-draggable";
+import { Text } from "react-native-paper";
+
+// Suppress the defaultProps warning for now
+LogBox.ignoreLogs([
+  "Warning: Draggable: Support for defaultProps will be removed from function components in a future major release.",
+]);
+
+const App = () => {
+  // State to track if each item is dropped
+  const [dropped1, setDropped1] = useState(false);
+  const [dropped2, setDropped2] = useState(false);
+  const [dropped3, setDropped3] = useState(false);
+  const [dropped4, setDropped4] = useState(false);
+
+  // State to track the drop area colors
+  const [color1, setColor1] = useState("#eaeaea");
+  const [color2, setColor2] = useState("#eaeaea");
+  const [color3, setColor3] = useState("#eaeaea");
+  const [color4, setColor4] = useState("#eaeaea");
+
+  // Set custom positions for drop areas
+  const [dropPosition1, setDropPosition1] = useState({ x: 50, y: 200 }); // Manually set X and Y
+  const [dropPosition2, setDropPosition2] = useState({ x: 320, y: 250 });
+  const [dropPosition3, setDropPosition3] = useState({ x: 100, y: 380 });
+  const [dropPosition4, setDropPosition4] = useState({ x: 250, y: 450 });
+
+  // Initial draggable item positions
+  const [initialPosition1, setInitialPosition1] = useState({ x: 40, y: 100 });
+  const [initialPosition2, setInitialPosition2] = useState({ x: 120, y: 100 });
+  const [initialPosition3, setInitialPosition3] = useState({ x: 205, y: 100 });
+  const [initialPosition4, setInitialPosition4] = useState({ x: 290, y: 100 });
+
+  // State for draggable sizes
+  const [width1, setWidth1] = useState(80);
+  const [height1, setHeight1] = useState(80);
+  const [width2, setWidth2] = useState(80);
+  const [height2, setHeight2] = useState(80);
+  const [width3, setWidth3] = useState(80);
+  const [height3, setHeight3] = useState(80);
+  const [width4, setWidth4] = useState(80);
+  const [height4, setHeight4] = useState(80);
+
+  // Function to check if the draggable item is dropped inside a specific drop area
+  const checkDropArea = (x, y, dropArea, setDropped, setColor, draggableIndex) => {
+    const buffer = 30; // Allow a slight buffer for tolerance
+    if (
+      x >= dropArea.x &&
+      x <= dropArea.x + dropArea.width &&
+      y >= dropArea.y - buffer && // Added buffer for above the drop area
+      y <= dropArea.y + dropArea.height + buffer // Added buffer for below the drop area
+    ) {
+      setDropped(true);
+      setColor("#90EE90"); // Set the drop area color to light green on successful drop
+      Alert.alert("Item Dropped", "You have dropped the item successfully!");
+    } else {
+      setDropped(false);
+      resetDraggablePosition(draggableIndex);
+      setColor("#FF6347"); // Set the color of the drop area to red if dropped outside
+      Alert.alert("Wrong Drop", "Item was dropped outside the valid drop area.");
+    }
+  };
+
+  // Function to reset the draggable item position
+  const resetDraggablePosition = (index) => {
+    switch (index) {
+      case 1:
+        setInitialPosition1({ x: 40, y: 100 });
+        break;
+      case 2:
+        setInitialPosition2({ x: 120, y: 100 });
+        break;
+      case 3:
+        setInitialPosition3({ x: 205, y: 100 });
+        break;
+      case 4:
+        setInitialPosition4({ x: 290, y: 100 });
+        break;
+      default:
+        break;
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      {/* Displaying the image */}
+      <Image
+        source={{
+          uri: "https://jadavpuruniversity.s3-ap-south-1.amazonaws.com/11-2024-7-330-purple-onion.png",
+        }}
+        style={styles.onionImage}
+      />
+
+      {/* Drop areas with custom positions and dynamic colors */}
+      <View
+        style={[
+          styles.dropArea,
+          { left: dropPosition1.x, top: dropPosition1.y, backgroundColor: color1, height: 40 },
+        ]}
+      >
+        <Text style={styles.dropAreaText}>Drop Here 1</Text>
+      </View>
+      <View
+        style={[
+          styles.dropArea,
+          { left: dropPosition2.x, top: dropPosition2.y, backgroundColor: color2, height: 40 },
+        ]}
+      >
+        <Text style={styles.dropAreaText}>Drop Here 2</Text>
+      </View>
+      <View
+        style={[
+          styles.dropArea,
+          { left: dropPosition3.x, top: dropPosition3.y, backgroundColor: color3, height: 40 },
+        ]}
+      >
+        <Text style={styles.dropAreaText}>Drop Here 3</Text>
+      </View>
+      <View
+        style={[
+          styles.dropArea,
+          { left: dropPosition4.x, top: dropPosition4.y, backgroundColor: color4, height: 40 },
+        ]}
+      >
+        <Text style={styles.dropAreaText}>Drop Here 4</Text>
+      </View>
+
+      {/* Draggable components */}
+      <Draggable
+        x={initialPosition1.x}
+        y={initialPosition1.y}
+        renderSize={Math.min(width1, height1)}
+        renderColor="blue"
+        onDragRelease={(e, gestureState) => {
+          const { moveX, moveY } = gestureState;
+          checkDropArea(
+            moveX,
+            moveY,
+            { x: dropPosition1.x, y: dropPosition1.y, width: 150, height: 40 },
+            setDropped1,
+            setColor1,
+            1
+          );
+        }}
+        style={[styles.draggableItem, { width: width1, height: height1 }]}
+      >
+        <Text style={styles.draggableText}>Drag me 1</Text>
+      </Draggable>
+
+      <Draggable
+        x={initialPosition2.x}
+        y={initialPosition2.y}
+        renderSize={Math.min(width2, height2)}
+        renderColor="green"
+        onDragRelease={(e, gestureState) => {
+          const { moveX, moveY } = gestureState;
+          checkDropArea(
+            moveX,
+            moveY,
+            { x: dropPosition2.x, y: dropPosition2.y, width: 150, height: 40 },
+            setDropped2,
+            setColor2,
+            2
+          );
+        }}
+        style={[styles.draggableItem, { width: width2, height: height2 }]}
+      >
+        <Text style={styles.draggableText}>Drag me 2</Text>
+      </Draggable>
+
+      <Draggable
+        x={initialPosition3.x}
+        y={initialPosition3.y}
+        renderSize={Math.min(width3, height3)}
+        renderColor="red"
+        onDragRelease={(e, gestureState) => {
+          const { moveX, moveY } = gestureState;
+          checkDropArea(
+            moveX,
+            moveY,
+            { x: dropPosition3.x, y: dropPosition3.y, width: 150, height: 40 },
+            setDropped3,
+            setColor3,
+            3
+          );
+        }}
+        style={[styles.draggableItem, { width: width3, height: height3 }]}
+      >
+        <Text style={styles.draggableText}>Drag me 3</Text>
+      </Draggable>
+
+      <Draggable
+        x={initialPosition4.x}
+        y={initialPosition4.y}
+        renderSize={Math.min(width4, height4)}
+        renderColor="orange"
+        onDragRelease={(e, gestureState) => {
+          const { moveX, moveY } = gestureState;
+          checkDropArea(
+            moveX,
+            moveY,
+            { x: dropPosition4.x, y: dropPosition4.y, width: 150, height: 40 },
+            setDropped4,
+            setColor4,
+            4
+          );
+        }}
+        style={[styles.draggableItem, { width: width4, height: height4 }]}
+      >
+        <Text style={styles.draggableText}>Drag me 4</Text>
+      </Draggable>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f0f0f0",
+    padding: 20,
+  },
+  onionImage: {
+    width: "100%",
+    height: 300,
+    resizeMode: "contain",
+  },
+  dropArea: {
+    width: 150,
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 2,
+    borderColor: "#ccc",
+    borderRadius: 10,
+    position: "absolute",
+  },
+  dropAreaText: {
+    color: "#333",
+  },
+  draggableItem: {
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    padding: 10,
+  },
+  draggableText: {
+    color: "#fff",
+    fontSize: 14,
+    textAlign: "center",
+  },
+});
+
+export default App;

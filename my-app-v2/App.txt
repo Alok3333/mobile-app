@@ -1,0 +1,362 @@
+// import React from "react";
+// import { NavigationContainer } from "@react-navigation/native";
+// import { createNativeStackNavigator } from "@react-navigation/native-stack";
+// import FindDiff from "./src/pages/FindDiff"; // Your FindDiff game screen
+// import MazeGen from "./src/pages/MazeGen"; // Your maze game screen
+// import FinalGamePage from "./src/pages/FinalGamePage"; // Your final screen
+// import BetterAim from "./src/pages/BetterAim";
+// import CardItem from "./src/pages/CardItem";
+// import Courses from "./src/pages/courses";
+// import ElectricalEngineeringScreen from "./src/pages/ElectricalEngineeringScreen";
+// import PhysicalLabsScreen from "./src/pages/PhysicalLabsScreen";
+// import ChemicalLabsScreen from "./src/pages/ChemicalLabsScreen";
+// import ElectronicsLabsScreen from "./src/pages/ElectronicsLabsScreen";
+// import ComputerScienceScreen from "./src/pages/ComputerScienceScreen";
+// import WordGuessing from "./src/pages/WordGuessing";
+// import UltimateBattleGame from "./src/pages/UltimateBattleGame";
+// import DiceGame from "./src/pages/DiceGame";
+// import PacManGame from "./src/pages/PacManGame";
+// import CrosswordGrid from "./src/pages/CrosswordGrid";
+// import ImgPuzzle from "./src/pages/ImgPuzzle";
+
+// import Index from "./src/pages/index";
+// import Home from "./src/pages/home";
+// import Login from "./src/pages/login";
+// import CourseModuleScreen from "./src/pages/courseModules";
+// import SignupQRFormScreen from "./src/pages/signUpQRCode";
+// import SubmissionFormScreen from "./src/pages/registrationForm";
+// import VideoPage from "./src/pages/videoPage";
+// import CourseModulesDetailsScreen from "./src/pages/courseModulesDetails";
+// import CourseActivityScreen from "./src/pages/courseActivity";
+// import InternshipMainScreen from "./src/pages/internshipMain";
+// import InternshipsScreen from "./src/pages/internship";
+// import InternshipActivityScreen from "./src/pages/internshipActivity";
+
+// // import PaymentScreen from "./src/pages/PaymentScreen";
+// // import QuizScreen from "./src/pages/QuizScreen";
+
+// const Stack = createNativeStackNavigator();
+
+// export default function App() {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator initialRouteName="Index">
+//         {/* <Stack.Screen
+//           name="PaymentScreen"
+//           component={PaymentScreen}
+//           options={{ title: "PaymentScreen" }}
+//         /> */}
+//         <Stack.Screen
+//           name="Index"
+//           component={Index}
+//           options={{ title: "Index" }}
+//         />
+//         <Stack.Screen
+//           name="Login"
+//           component={Login}
+//           options={{ title: "Login" }}
+//         />
+//         <Stack.Screen
+//           name="VideoPage"
+//           component={VideoPage}
+//           options={{ title: "AI Video" }}
+//         />
+//         <Stack.Screen
+//           name="SignupQRFormScreen"
+//           component={SignupQRFormScreen}
+//           options={{ title: "Signup with QR Code" }}
+//         />
+//         <Stack.Screen
+//           name="SubmissionFormScreen"
+//           component={SubmissionFormScreen}
+//           options={{ title: "Registration Form" }}
+//         />
+//         <Stack.Screen
+//           name="Home"
+//           component={Home}
+//           options={{ title: "Home" }}
+//         />
+//         <Stack.Screen
+//           name="CourseModuleScreen"
+//           component={CourseModuleScreen}
+//           options={{ title: "Course Module" }}
+//         />
+//         <Stack.Screen
+//           name="CourseModulesDetailsScreen"
+//           component={CourseModulesDetailsScreen}
+//           options={{ title: "Course Modules Details" }}
+//         />
+//         <Stack.Screen
+//           name="CourseActivityScreen"
+//           component={CourseActivityScreen}
+//           options={{ title: "Course Activity" }}
+//         />
+//         <Stack.Screen
+//           name="InternshipsScreen"
+//           component={InternshipsScreen}
+//           options={{ title: "Internships" }}
+//         />
+//         <Stack.Screen
+//           name="InternshipMainScreen"
+//           component={InternshipMainScreen}
+//           options={{ title: "Internship" }}
+//         />
+//         <Stack.Screen
+//           name="InternshipActivityScreen"
+//           component={InternshipActivityScreen}
+//           options={{ title: "Internship Activity" }}
+//         />
+
+//         <Stack.Screen
+//           name="Courses"
+//           component={Courses}
+//           options={{ title: "List" }}
+//         />
+//         <Stack.Screen
+//           name="CardItem"
+//           component={CardItem}
+//           options={{ title: "List of game" }}
+//         />
+//         <Stack.Screen
+//           name="ElectricalEngineeringScreen"
+//           component={ElectricalEngineeringScreen}
+//           options={{ title: "List of Electrical Engineering" }}
+//         />
+//         <Stack.Screen
+//           name="PhysicalLabsScreen"
+//           component={PhysicalLabsScreen}
+//           options={{ title: "List of Physical Labs" }}
+//         />
+//         <Stack.Screen
+//           name="ChemicalLabsScreen"
+//           component={ChemicalLabsScreen}
+//           options={{ title: "List of Chemical Labs" }}
+//         />
+//         <Stack.Screen
+//           name="ElectronicsLabsScreen"
+//           component={ElectronicsLabsScreen}
+//           options={{ title: "List of Electronics Labs" }}
+//         />
+//         <Stack.Screen
+//           name="ComputerScienceScreen"
+//           component={ComputerScienceScreen}
+//           options={{ title: "List of Computer Science" }}
+//         />
+//         <Stack.Screen
+//           name="FindDiff"
+//           component={FindDiff}
+//           options={{ title: "Find the Differences" }}
+//         />
+//         <Stack.Screen
+//           name="BetterAim"
+//           component={BetterAim}
+//           options={{ title: "BetterAim Game" }}
+//         />
+//         <Stack.Screen
+//           name="WordGuessing"
+//           component={WordGuessing}
+//           options={{ title: "Spellbound: The Word Game" }}
+//         />
+//         <Stack.Screen
+//           name="UltimateBattleGame"
+//           component={UltimateBattleGame}
+//           options={{ title: "X vs O: The Ultimate Battle" }}
+//         />
+//         <Stack.Screen
+//           name="DiceGame"
+//           component={DiceGame}
+//           options={{ title: "Dicey Decisions" }}
+//         />
+//         <Stack.Screen
+//           name="PacManGame"
+//           component={PacManGame}
+//           options={{ title: "PacMan Game" }}
+//         />
+//         <Stack.Screen
+//           name="CrosswordGrid"
+//           component={CrosswordGrid}
+//           options={{ title: "Cross Word Puzzle Game" }}
+//         />
+//         <Stack.Screen
+//           name="ImgPuzzle"
+//           component={ImgPuzzle}
+//           options={{ title: "Image Puzzle Game" }}
+//         />
+
+//         <Stack.Screen
+//           name="MazeGen"
+//           component={MazeGen}
+//           options={{ title: "Maze Generation Game" }}
+//         />
+//         <Stack.Screen
+//           name="FinalGamePage"
+//           component={FinalGamePage}
+//           options={{ title: "Game Over" }}
+//         />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// }
+
+// **************************************** label of onion parts experiment ****************
+// // // // Class 6th CBSE science
+
+// // // import React, { useState } from "react";
+// // // import { View, Image, StyleSheet, Alert, TextInput } from "react-native";
+// // // import { Provider as PaperProvider, Button, Text } from "react-native-paper";
+
+// // // const onionParts = [
+// // //   { id: 1, position: { top: "0%", left: "10%" } }, // Outer Skin
+// // //   { id: 2, position: { top: "45%", left: "40%" } }, // Flesh2
+// // //   { id: 3, position: { top: "11%", left: "72%" } }, // Flesh4
+// // //   { id: 4, position: { top: "82%", left: "53%" } }, // Root
+// // // ];
+
+// // // const OnionParts = () => {
+// // //   const [answers, setAnswers] = useState({
+// // //     1: "",
+// // //     2: "",
+// // //     3: "",
+// // //     4: "",
+// // //   });
+
+// // //   const checkAnswers = () => {
+// // //     const correctAnswers = ["foliar stem", "bulb scale", "tunic", "root"]; // Correct answers
+// // //     const userAnswers = Object.values(answers).map((answer) =>
+// // //       answer.trim().toLowerCase()
+// // //     ); // Convert answers to lowercase
+
+// // //     const isCorrect = userAnswers.every(
+// // //       (answer, index) => answer === correctAnswers[index]
+// // //     );
+
+// // //     if (isCorrect) {
+// // //       Alert.alert("Correct!", "All answers are correct!");
+// // //       setAnswers({ 1: "", 2: "", 3: "", 4: "" });
+// // //     } else {
+// // //       Alert.alert("Try Again!", "Some answers are incorrect.");
+// // //     }
+// // //   };
+
+// // //   const handleSubmit = () => {
+// // //     Alert.alert("Submitted!", "Submitted Successfully!");
+// // //   };
+
+// // //   return (
+// // //     <PaperProvider>
+// // //       <View style={styles.container}>
+// // //         <Text variant="headlineLarge" style={styles.title}>
+// // //           Food - Label the Onion Parts
+// // //         </Text>
+// // //         <Text variant="titleMedium" style={styles.instruction}>
+// // //           Choose the correct word for each part of the onion and write it in the
+// // //           corresponding box:
+// // //         </Text>
+// // //         <Text style={styles.hint}>
+// // //           Tunic, Bulb Scale (fleshy modified leaves), Root, Foliar stem
+// // //         </Text>
+// // //         <View style={styles.imageContainer}>
+// // //           <Image
+// // //             source={{
+// // //               uri: "https://jadavpuruniversity.s3-ap-south-1.amazonaws.com/11-2024-7-330-purple-onion.png",
+// // //             }}
+// // //             style={styles.onionImage}
+// // //           />
+// // //           {onionParts.map((part) => (
+// // //             <View
+// // //               key={part.id}
+// // //               style={[
+// // //                 styles.dot,
+// // //                 { top: part.position.top, left: part.position.left },
+// // //               ]}
+// // //             >
+// // //               <TextInput
+// // //                 style={styles.input}
+// // //                 placeholder={`Enter ${part.id}`}
+// // //                 value={answers[part.id]}
+// // //                 onChangeText={
+// // //                   (text) =>
+// // //                     setAnswers((prev) => ({
+// // //                       ...prev,
+// // //                       [part.id]: text.toLowerCase(),
+// // //                     })) // Convert input to lowercase
+// // //                 }
+// // //               />
+// // //             </View>
+// // //           ))}
+// // //         </View>
+// // //         <Button mode="contained" onPress={checkAnswers} style={styles.button}>
+// // //           Check Answers
+// // //         </Button>
+// // //         <Text
+// // //           variant="titleMedium"
+// // //           style={{
+// // //             textAlign: "center",
+// // //             color: "red",
+// // //             marginTop: 10,
+// // //             marginBottom: 10,
+// // //             paddingHorizontal: 5,
+// // //           }}
+// // //         >
+// // //           Once you have checked the answer then click to submit button your
+// // //           answer.
+// // //         </Text>
+// // //         <Button mode="contained" onPress={handleSubmit} style={styles.button}>
+// // //           Submit
+// // //         </Button>
+// // //       </View>
+// // //     </PaperProvider>
+// // //   );
+// // // };
+
+// // // const styles = StyleSheet.create({
+// // //   container: {
+// // //     flex: 1,
+// // //     justifyContent: "center",
+// // //     alignItems: "center",
+// // //     padding: 20,
+// // //     backgroundColor: "#f9f9f9",
+// // //   },
+// // //   title: {
+// // //     marginBottom: 20,
+// // //     textAlign: "center",
+// // //   },
+// // //   instruction: {
+// // //     textAlign: "center",
+// // //     marginBottom: 10,
+// // //   },
+// // //   hint: {
+// // //     marginHorizontal: 10,
+// // //     marginVertical: 20,
+// // //     color: "blue",
+// // //   },
+// // //   imageContainer: {
+// // //     position: "relative",
+// // //     width: "100%",
+// // //     alignItems: "center",
+// // //   },
+// // //   onionImage: {
+// // //     width: "100%",
+// // //     height: 300,
+// // //     resizeMode: "contain",
+// // //   },
+// // //   dot: {
+// // //     position: "absolute",
+// // //     alignItems: "center",
+// // //     zIndex: 2,
+// // //   },
+// // //   input: {
+// // //     padding: 10,
+// // //     borderColor: "#ccc",
+// // //     borderWidth: 1,
+// // //     borderRadius: 5,
+// // //     backgroundColor: "#fff",
+// // //     width: 120,
+// // //     marginTop: 5,
+// // //   },
+// // //   button: {
+// // //     marginTop: 20,
+// // //   },
+// // // });
+
+// // // export default OnionParts;
